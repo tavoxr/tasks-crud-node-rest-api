@@ -39,17 +39,17 @@ export const getOneTask = async (req,res)=>{
 }
 
 export const updateTask = async (req,res)=>{    
-        const {} = req.body
-        const task =  await Task.findByIdAndUpdate(req.params.id, {})
 
-
+    const task =  await Task.findByIdAndUpdate(req.params.id, req.body);
+    
+    res.json({"message": "Task was updated successfully"});
 }
 
 export const deleteTask = async (req,res)=>{    
 
-    const task = await Task.findByIdAndDelete(req.params.id)
+    const task = await Task.findByIdAndDelete(req.params.id);
 
-    res.json({"message": `${task.id} Task was deleted successfully`})
+    res.json({"message": `${task.id} Task was deleted successfully`});
 
 }
 
