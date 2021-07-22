@@ -1,12 +1,23 @@
-import Task from '../models/Task'
-
+import Task from '../models/Task';
+import {getPagination} from '../libs/getPagination';
 
 
 
 export const getTasks = async (req,res)=>{    
 
-    try{        
-        const tasks =  await Task.find();
+    try{   
+        
+        const {size, page, title} = req.query;
+
+        const condition = title 
+        ? {
+                title: {$regex: new RegExp(title), $options: "i"}
+            } 
+        : {};
+
+        const{limit, offset} =  getPagination(page,size);     
+        const tasks =  await Task.paginate(condition, {offset , limit: limit  });
+
         res.json(tasks);
     }catch(error){
         res.status(500).json({message: error.message || "Something goes wrong creating a tasks."});
