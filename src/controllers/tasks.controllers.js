@@ -1,30 +1,49 @@
 import Task from '../models/Task'
 
-const tasksCtrl = {}
 
 
-tasksCtrl.getTasks = async (req,res)=>{    
+
+export const getTasks = async (req,res)=>{    
 
     const tasks =  await Task.find();
     res.json(tasks);
 }
 
-tasksCtrl.createTask = (req,res)=>{    
+export const createTask = async (req,res)=>{    
+
+    const {title, description, done} = req.body
+    
+    const newTask =  new Task({
+        title,
+        description,
+        done
+    })
+
+    const taskSaved =  await newTask.save();
+
+    res.json(taskSaved)
+}
+
+export const getOneTask = async (req,res)=>{    
+
+    const task = await Task.findById(req.params.id);
+
+    res.json(task)
+
+}
+
+export const updateTask = async (req,res)=>{    
+        const {} = req.body
+        const task =  await Task.findByIdAndUpdate(req.params.id, {})
 
 
 }
 
-tasksCtrl.getTask = (req,res)=>{    
+export const deleteTask = async (req,res)=>{    
+
+    const task = await Task.findByIdAndDelete(req.params.id)
+
+    res.json({"message": `${task.id} Task was deleted successfully`})
 
 }
 
-tasksCtrl.updateTask = (req,res)=>{    
-
-}
-
-tasksCtrl.deleteTask = (req,res)=>{    
-
-}
-
-
-export default tasksCtrl;
