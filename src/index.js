@@ -1,10 +1,9 @@
-import app from './app'
-import './database'
+import app from './app';
+import './database';
 
-
-//server
 const port = app.get('port');
 
+//server
 app.listen(port,()=>{
     console.log("Server running on port ", port);
-})
+});

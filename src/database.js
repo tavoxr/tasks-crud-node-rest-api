@@ -1,14 +1,19 @@
-import mongoose from 'mongoose'
-import config from './config'
-
+import mongoose from 'mongoose';
+import config from './config';
 
 const dbConexion = async ()=>{
 
-    await mongoose.connect(config.mongodbUrl,
-                          {useNewUrlParser: true,
-                           useUnifiedTopology: true,   
-                          }
-                    );
+    try{
+
+        await mongoose.connect(config.mongodbUrl,{
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            useFindAndModify:false,   
+        });
+
+    }catch(error){
+        console.log(error);
+    }
 
 }
 

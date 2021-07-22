@@ -2,20 +2,20 @@ import {Router} from 'express'
 import {getTasks, createTask, 
         getOneTask, updateTask,
         deleteTask,  getDoneTasks} from '../controllers/tasks.controllers'
-const router = Router()
+const router = Router();
 
 
-router.get('/', getTasks)
+router.get('/', getTasks);
 
-router.post('/', createTask)
+router.post('/', createTask);
 
-router.get('/done', getDoneTasks)
+router.get('/done', getDoneTasks);
 
-router.get('/:id', getOneTask)
+router.get('/:id', getOneTask);
 
-router.put('/:id',updateTask )
+router.put('/:id',updateTask);
 
-router.delete('/:id', deleteTask)
+router.delete('/:id', deleteTask);
 
 
 
