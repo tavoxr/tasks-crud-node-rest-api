@@ -1,13 +1,15 @@
 import {Router} from 'express'
 import {getTasks, createTask, 
         getOneTask, updateTask,
-        deleteTask} from '../controllers/tasks.controllers'
+        deleteTask,  getDoneTasks} from '../controllers/tasks.controllers'
 const router = Router()
 
 
 router.get('/', getTasks)
 
 router.post('/', createTask)
+
+router.get('/done', getDoneTasks)
 
 router.get('/:id', getOneTask)
 

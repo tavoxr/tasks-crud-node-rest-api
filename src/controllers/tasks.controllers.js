@@ -21,14 +21,20 @@ export const createTask = async (req,res)=>{
 
     const taskSaved =  await newTask.save();
 
-    res.json(taskSaved)
+    res.json(taskSaved);
 }
+
+export const getDoneTasks = async (req,res)=>{
+
+    const tasksDone = await Task.find({done: true});
+    res.json(tasksDone);
+}
+
 
 export const getOneTask = async (req,res)=>{    
 
     const task = await Task.findById(req.params.id);
-
-    res.json(task)
+    res.json(task);
 
 }
 
