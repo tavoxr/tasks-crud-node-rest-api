@@ -7,7 +7,7 @@ import tasksRoutes from './routes/tasks.routes';
 const app = express();
 
 //settings 
-app.set('port', process.env.port || 4000);
+app.set('port', process.env.PORT || 4000);
 
 //middlewares
 const corsOptions = {};
