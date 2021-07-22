@@ -1,10 +1,27 @@
 import {Router} from 'express'
+import Task from '../models/Task'
+import tasksCtrl from '../controllers/tasks.controllers'
 const router = Router()
 
 
-router.get('/',(req, res)=>{
+router.get('/', tasksCtrl.getTasks)
 
-    res.json({"message": "Hello World Gustavo"})
+router.post('/', async (req,res)=>{
+
+    
+    const {title,description, done} = req.body
+
+    const newTask = new Task({
+        title,
+        description,
+        done
+    })
+
+    const taskSaved = await  newTask.save();
+
+    console.log('task', taskSaved)
+    res.json(taskSaved)
+      
 })
 
 
